@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.vscode/
+
+.npm
+.bash_history
+.node_repl_history

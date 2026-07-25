@@ -1,0 +1,56 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  padding: 40px;
+}
+
+.task {
+  background: white;
+  width: 350px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.task h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.task p {
+  color: #666;
+}
+
+.task span {
+  display: block;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+button {
+  padding: 8px 14px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #2563eb;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+input,
+select {
+  width: 350px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+body > button {
+  background: #16a34a;
+}
