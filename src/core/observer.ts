@@ -1,8 +1,11 @@
 // observable générique T = type de la valeur transportée
 export class Observable<T> {
   private subscribers: Array<(value: T) => void> = [];
+  private value: T;
 
-  constructor(private value: T) {}
+  constructor(value: T) {
+    this.value = value;
+  }
 
   // ajout un callback retourne une fonction pour se désabonner
   subscribe(callback: (value: T) => void): () => void {

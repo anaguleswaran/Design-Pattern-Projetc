@@ -1,4 +1,6 @@
-// interface commune pour tous les backends de stockage
+/**
+ * Contrat commun pour tous les backends de stockage.
+ */
 export interface StorageStrategy {
   get<T>(key: string): Promise<T | undefined>;
   set<T>(key: string, value: T): Promise<void>;
@@ -6,7 +8,9 @@ export interface StorageStrategy {
   clear(): Promise<void>;
 }
 
-// stockage en mémoireperdu au refresh
+/**
+ * Strategie de stockage en memoire volatile.
+ */
 export class VolatileStorage implements StorageStrategy {
   private store: Map<string, unknown> = new Map();
 
@@ -27,9 +31,15 @@ export class VolatileStorage implements StorageStrategy {
   }
 }
 
-// stockage dans le localstorage du navigateur
+/**
+ * Strategie de stockage via `localStorage`.
+ */
 export class LocalStorageAdapter implements StorageStrategy {
-  constructor(private readonly prefix: string = 'app:') {}
+  private readonly prefix: string;
+
+  constructor(prefix: string = 'app:') {
+    this.prefix = prefix;
+  }
 
   async get<T>(key: string): Promise<T | undefined> {
     const raw = localStorage.getItem(this.prefix + key);
@@ -52,16 +62,22 @@ export class LocalStorageAdapter implements StorageStrategy {
   }
 }
 
-// stockage dans IndexedDB pour les gros volumes de données
+/**
+ * Strategie de stockage via IndexedDB.
+ */
 export class IndexedDBStorage implements StorageStrategy {
   private readonly storeName = 'app-store';
   private dbPromise: Promise<IDBDatabase>;
+  private readonly dbName: string;
 
-  constructor(private readonly dbName: string = 'app-db') {
+  constructor(dbName: string = 'app-db') {
+    this.dbName = dbName;
     this.dbPromise = this.openDatabase();
   }
 
-  // ouvre ou créer la base au premier appel
+  /**
+   * Ouvre ou cree la base IndexedDB si necessaire.
+   */
   private openDatabase(): Promise<IDBDatabase> {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(this.dbName, 1);

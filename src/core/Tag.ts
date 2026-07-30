@@ -1,3 +1,3 @@
 export interface Tag {
-    toHtml(): HTMLElement;
+  toHtml(): HTMLElement;
 }

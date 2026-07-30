@@ -5,6 +5,7 @@ export class Tache {
   description: string;
   priorite: Priorite;
   createdAt: Date;
+
   constructor(
     title: string,
     description: string,

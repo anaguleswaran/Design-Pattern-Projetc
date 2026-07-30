@@ -4,19 +4,29 @@
 
 - Docker
 - Docker Compose
+- Node.js
 
 ## Development Server
 
 ```bash
-docker compose up -d
-docker compose exec node npm install
-docker compose exec node npm run dev
+npm install
+npm run dev
 ```
 
-## Build the app
+## Tests
 
 ```bash
-docker compose up -d
-docker compose exec node npm install
-docker compose exec node npm run build
+npm run test:run
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+## Docker
+
+```bash
+docker compose up --build
 ```

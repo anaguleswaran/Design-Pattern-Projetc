@@ -56,6 +56,7 @@ export class AppStore {
     return this.state[key] as T | undefined;
   }
 
+  // ecrit une valeur en mémoire et la persiste
   setState<T>(key: string, value: T): void {
     this.state[key] = value;
     void this.strategy.set(key, value); 
